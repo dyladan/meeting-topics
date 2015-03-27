@@ -14,6 +14,8 @@ body {
   margin: 0;
 
   font-size: 14px;
+
+  color: #333;
 }
 
 .container {
@@ -24,7 +26,6 @@ body {
 }
 
 header {
-  background: #f0f0f0;
   padding: 20px 15px 15px 15px;
   position: relative;
 }
@@ -53,7 +54,6 @@ form {
   background: transparent;
   border: none;
   width: 100%;
-  padding-right: 80px;
   font-size: 1em;
 }
 
@@ -89,6 +89,7 @@ li .text {
 
 li.checked {
   color: #888;
+  background-color: #f0f0f0;
 }
 
 li.checked .text {
@@ -96,7 +97,9 @@ li.checked .text {
 }
 
 li.private {
-  background: #eee;
+  /*background: #ddd;*/
+  font-style: italic;
+  color: #aaa;
   border-color: #ddd;
 }
 
