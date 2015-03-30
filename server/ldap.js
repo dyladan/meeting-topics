@@ -15,20 +15,24 @@ Accounts.registerLoginHandler('ldap',function (options) {
   var dn = "uid=" + options.username + ",cn=members,dc=yakko,dc=cs,dc=wmich,dc=edu";
   var cb =  Meteor.bindEnvironment(function (err) {
     if (!err) {
-      userId = Accounts.createUser({
-        username: options.username,
-        password: options.ldap_password
-      });
+      var user = Meteor.users.findOne({username: options.username});
+      if(!user) {
+        userId = Meteor.users.insert({username: options.username});
+      } else {
+        userId = user._id;
+      }
     }
     future.return();
   });
-  console.log(client.bind(dn, options.ldap_password, cb));
-
-  console.log("userId: "+userId);
+  client.bind(dn, options.ldap_password, cb);
 
   future.wait();
 
-  return {userId: userId};
+  if (userId)
+    return {userId: userId};
+
+  return {error: new Meteor.Error(403, "Incorrect password")}
+
 
 
 });
