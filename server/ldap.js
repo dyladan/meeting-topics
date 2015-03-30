@@ -7,9 +7,6 @@ Accounts.registerLoginHandler('ldap',function (options) {
   var future = new Future();
   var client = ldap.createClient({
     socketPath: "/var/run/slapd/ldapi",
-    maxConnections: 10,
-    bindDN: "cn=readonly,dc=yakko,dc=cs,dc=wmich,dc=edu",
-    bindCredentials: "Changem3"
   });
   var userId;
   var dn = "uid=" + options.username + ",cn=members,dc=yakko,dc=cs,dc=wmich,dc=edu";
