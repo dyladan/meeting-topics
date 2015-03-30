@@ -5,10 +5,9 @@
 # but you can also edit it by hand.
 
 meteor-platform
-accounts-ui
-accounts-password
 meteorhacks:npm
 
 
 npm-container
 dessix:livescript-compiler
+accounts-password

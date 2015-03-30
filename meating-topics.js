@@ -41,6 +41,33 @@ if (Meteor.isClient) {
     },
     "change .hide-completed input": function (event) {
       Session.set("hideCompleted", event.target.checked);
+    },
+    "submit .login-form": function(event) {
+      console.log("logging in");
+      console.log(event.target);
+      var username = event.target.username.value
+          password = event.target.password.value;
+
+      Meteor.loginWithPassword(username, password, function (err) {
+        if (err) {
+          //login failure
+          console.log("login failure");
+          Meteor.loginWithLdap(username, password, function (err) {
+            if (err) {
+              console.log("account creation with ldap failed");
+              console.log(err);
+            } else {
+              console.log("account created with ldap");
+            }
+          });
+        } else {
+          //user logged in
+          console.log("login success");
+          console.log(Meteor.user());
+        }
+      });
+      event.target.password.value = "";
+      return false;
     }
   });
 
@@ -56,6 +83,7 @@ if (Meteor.isClient) {
       Meteor.call("setPrivate", this._id, ! this.private);
     }
   });
+
   Accounts.ui.config({
     passwordSignupFields: "USERNAME_ONLY"
   });

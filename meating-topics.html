@@ -11,8 +11,15 @@
         <input type="checkbox" checked="{{hideCompleted}}" />
         Hide Completed Tasks
       </label>
-
-      {{> loginButtons}}
+      {{#if currentUser}}
+        <h2>Hello {{currentUser.username}}</h2>
+      {{else}}
+        <form class="login-form">
+          <input type="text" name="username">
+          <input type="password" name="password">
+          <input type="submit" value="login">
+        </form>
+      {{/if}}
 
       {{#if currentUser}}
       <form class="new-task">
@@ -52,3 +59,4 @@
     <span class="text"><strong>{{username}}</strong> - {{text}}</span>
   </li>
 </template>
+
