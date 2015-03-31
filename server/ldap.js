@@ -14,7 +14,7 @@ Accounts.registerLoginHandler('ldap',function (options) {
     if (!err) {
       var user = Meteor.users.findOne({username: options.username});
       if(!user) {
-        userId = Meteor.users.insert({username: options.username});
+        userId = Meteor.users.insert({username: options.username, cn: "anonymous"});
       } else {
         userId = user._id;
       }

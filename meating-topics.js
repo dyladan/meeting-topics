@@ -92,7 +92,8 @@ Meteor.methods({
       text: text,
       createdAt: new Date(),
       owner: Meteor.userId(),
-      username: Meteor.user().username
+      username: Meteor.user().username,
+      cn: Meteor.user().cn
     });
   },
   deleteTask: function (taskId) {
