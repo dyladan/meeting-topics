@@ -12,7 +12,7 @@
         Hide Completed Tasks
       </label>
       {{#if currentUser}}
-        <h2>Hello {{currentUser.username}} - <a href="#" class="logout">logout</a></h2>
+        <h2>Hello {{currentUser.profile.cn}} ({{currentUser.username}}) - <a href="#" class="logout">logout</a></h2>
       {{else}}
         <form class="login-form">
           <input type="text" name="username">
@@ -44,16 +44,6 @@
 
     {{#if currentUser}}
       <input type="checkbox" checked="{{checked}}" class="toggle-checked" />
-    {{/if}}
-
-    {{#if isOwner}}
-      <button class="toggle-private">
-        {{#if private}}
-          Private
-        {{else}}
-          Public
-        {{/if}}
-      </button>
     {{/if}}
 
     <span class="text"><strong>{{cn}}</strong> - {{text}}</span>

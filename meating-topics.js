@@ -88,12 +88,16 @@ Meteor.methods({
       throw new Meteor.Error("not-authorized");
     }
 
+    if (typeof(text) !== "string") {
+      throw new Meteor.Error("non-string task");
+    }
+
     Tasks.insert({
       text: text,
       createdAt: new Date(),
       owner: Meteor.userId(),
       username: Meteor.user().username,
-      cn: Meteor.user().cn
+      cn: Meteor.user().profile.cn
     });
   },
   deleteTask: function (taskId) {
