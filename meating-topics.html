@@ -9,7 +9,7 @@
 
       <label class="hide-completed">
         <input type="checkbox" checked="{{hideCompleted}}" />
-        Hide Completed Tasks
+        Hide Completed Topics
       </label>
       {{#if currentUser}}
         <h2>Hello {{currentUser.profile.cn}} ({{currentUser.username}}) - <a href="#" class="logout">logout</a></h2>
@@ -22,21 +22,21 @@
       {{/if}}
 
       {{#if currentUser}}
-      <form class="new-task">
+      <form class="new-topic">
         <input type="text" name="text" placeholder="Type to add new topic" />
       </form>
       {{/if}}
     </header>
 
     <ul>
-      {{#each tasks}}
-        {{> task}}
+      {{#each topics}}
+        {{> topic}}
       {{/each}}
     </ul>
   </div>
 </body>
 
-<template name="task">
+<template name="topic">
   <li class="{{#if checked}}checked{{/if}} {{#if private}}private{{/if}}">
     {{#if currentUser}}
       <button class="delete">&times;</button>
